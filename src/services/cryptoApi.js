@@ -12,17 +12,26 @@ const baseUrl = 'https://coinranking1.p.rapidapi.com';
 
 const createRequest = (url) => ({ url, headers: CryptoApiHeaders })
 
-export const cryptoApi = createApi({
+export const cryptoApi = createApi({ 
     reducerPath: 'cryptoApi',
     baseQuery: fetchBaseQuery({ baseUrl }),
     endpoints: (builder) => ({
         getCryptos: builder.query({
             query: (count) => createRequest(`/coins?referenceCurrencyUuid=yhjMzLPhuIDl&timePeriod=24h&tiers=1&orderBy=marketCap&orderDirection=desc&limit=${count}&offset=0`)
+        }),
+        getExchanges: builder.query({
+            query: () => createRequest('/exchanges'),
+        }),
+        getCryptoDetails: builder.query({
+            query: (coinId) => createRequest(`/coin/${coinId}`),
+        }),
+        getCryptoHistory: builder.query({
+            query: ({coinId, timePeriod }) => createRequest(`/coin/${coinId}/history/${timePeriod}`),
         })
     })
 })
 
-export const { useGetCryptosQuery } = cryptoApi;
+export const { useGetCryptosQuery, useGetExchangesQuery, useGetCryptoDetailsQuery, useGetCryptoHistoryQuery } = cryptoApi;
 
 
 // const baseURL = 'https://coinranking1.p.rapidapi.com/stats?referenceCurrencyUuid=yhjMzLPhuIDl';
