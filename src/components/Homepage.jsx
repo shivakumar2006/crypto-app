@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { useGetCryptosQuery } from '../services/cryptoApi';
 import CryptoCurrencies from './CryptoCurrencies';
 import News from './News';
+import Loader from './Loader';
 
 const { Title } = Typography;
 
@@ -16,7 +17,7 @@ const Homepage = () => {
     const globalStats = data?.data?.stats || {};
     console.log("GlobalStats : ", globalStats);
 
-    if (isFetching ) return 'Loading...'
+    if (isFetching ) return <Loader />
 
     if (error) {
         return <div>Error: Unable to fetch data. {error.message}</div>

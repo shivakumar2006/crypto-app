@@ -4,6 +4,7 @@ import moment from 'moment';
 
 import { useGetCryptoNewsQuery } from '../services/cryptoNewsApi';
 import { useGetCryptosQuery } from '../services/cryptoApi';
+import Loader from './Loader';
 
 const { Text, Title } = Typography;
 const { Option } = Select;
@@ -20,7 +21,7 @@ const News = ({ simplified }) => {
     );
     const { data: cryptoList } = useGetCryptosQuery(100);
 
-    if (isFetching) return <div>Loading...</div>;
+    if (isFetching) return <div><Loader /></div>;
 
     if (!cryptoNews?.data?.length) return <div>No News Available</div>;
 
