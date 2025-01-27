@@ -26,7 +26,7 @@ const CryptoDetails = () => {
     console.log('Time Period:', timePeriod);
 
     if (isFetchingHistory) {
-        return <div>Loading Coin History...</div>
+        return <Loading />
     }
 
     if (isFetching) {
