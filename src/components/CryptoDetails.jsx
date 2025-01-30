@@ -5,6 +5,7 @@ import millify from 'millify';
 import { Col, Row, Typography, Select, Spin } from 'antd';
 import { MoneyCollectOutlined, DollarCircleOutlined, FundOutlined, ExclamationCircleOutlined, StopOutlined, TrophyOutlined, CheckOutlined, NumberOutlined, ThunderboltOutlined } from '@ant-design/icons';
 import { useGetCryptoDetailsQuery, useGetCryptoHistoryQuery } from '../services/cryptoApi';
+import Loader from './Loader';
 
 import LineChart from './LineChart';
 
@@ -26,7 +27,7 @@ const CryptoDetails = () => {
     console.log('Time Period:', timePeriod);
 
     if (isFetchingHistory) {
-        return <Loading />
+        return <Loader />
     }
 
     if (isFetching) {
